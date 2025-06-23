@@ -1,0 +1,14 @@
+{
+	"short_name": "HomeCampus",
+	"name": "HomeCampus - The Online School of Mathematics",
+	"start_url": "/",
+	"display": "standalone",
+	"orientation": "portrait",
+	"icons": [
+			{
+			 "src": "/images/apple-touch-icon.png",
+			 "sizes": "57x57",
+			 "type" : "image/png"
+			}
+		]
+}
