@@ -12,7 +12,7 @@ from auth2 import get_user_by_id  # import user loader from auth.py
 from routes import auth_bp 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key'
-
+#changes 
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'  # redirect to login page if unauthorized
 login_manager.init_app(app)
