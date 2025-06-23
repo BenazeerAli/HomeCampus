@@ -66,9 +66,9 @@ def signin():
     if user and check_password_hash(user.password_hash, password):
         login_user(user)
         if is_ajax:
-            return jsonify(success=True, continue_url=url_for('auth.dashboard'))
+            return jsonify(success=True, continue_url=url_for('index'))
         else:
-            return redirect(url_for('auth.dashboard'))
+            return redirect(url_for('index'))
     else:
         if is_ajax:
             return jsonify(success=False, error="Invalid username or password"), 401
@@ -80,7 +80,7 @@ def signin():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('index'))
 
 @auth_bp.route('/dashboard')
 @login_required

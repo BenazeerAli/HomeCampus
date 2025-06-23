@@ -12,7 +12,7 @@ from auth2 import get_user_by_id  # import user loader from auth.py
 from routes import auth_bp 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key'
-#changes 
+#changes pip 
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'  # redirect to login page if unauthorized
 login_manager.init_app(app)
@@ -26,7 +26,15 @@ app.register_blueprint(auth_bp)
 
 @app.route('/')
 def index():
+    print("User authenticated:", current_user.is_authenticated)
+    print("Username:", current_user.username if current_user.is_authenticated else "Anonymous")
     return render_template('HomePage.html')
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()  # Clears the session and logs out the user
+    flash('You have been logged out.')
+    return redirect(url_for('index'))  # Redirect to homepage or login page
 
 @app.context_processor
 def inject_user():

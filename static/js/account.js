@@ -39,12 +39,13 @@ $(document).ready(function(){
 	});
 	
 	//form submit handle
-	$("body").on('click', '#embed-sign-in', function(evt){
+	$("body").on('click', '#embed-sign-in', function(evt) {
 		evt.preventDefault();
-		console.log("Signing In");
+		console.log("Signed In");
 		signin_handler($("#sign-in-form"), $(this));
 	});
-	
+
+
 	$("body").on('click', '#embed-register', function(evt){
 		evt.preventDefault();
 		console.log("Registering");
@@ -186,35 +187,33 @@ function signin(modalWindow) {
 //** Sign-in form submit handle **
 //================================
 function signin_handler(form, sign_button){
-	//get the data and sanitize (simply check for presence)
-	var obj = {};
-	form.serializeArray().map(function(x){ obj[x.name] = x.value; });
-	var err = false;
-	
-	//Checking input
-	if( obj.username === "" ) {
-		console.log("Empty Username");
-		has_error($("#username"));
-		err = true;
-	}
-	
-	if( obj.password === "" ) {
-		console.log("Empty Password");
-		has_error($("#password"));
-		err = true;
-	}
-	if( err )return;
-	
-	//form validated
-	//disabling signin button to indicate progress
-	sign_button.prop("disabled", true).addClass("wait");
-	
-	//now serialize and send data to server
-	var url = "/SignIn?continue=" +  encodeURIComponent(location.pathname) + "&async";
-	var data = form.serialize();
-	
-	doLogin(data, url, sign_button);
+    console.log("signin_handler called");
+    var obj = {};
+    form.serializeArray().map(function(x){ obj[x.name] = x.value; });
+    var err = false;
+
+    if( obj.username === "" ) {
+        console.log("Empty Username");
+        has_error($("#username"));
+        err = true;
+    }
+    if( obj.password === "" ) {
+        console.log("Empty Password");
+        has_error($("#password"));
+        err = true;
+    }
+    if( err ) return;
+
+    console.log("Sending AJAX with data:", form.serialize());
+
+    sign_button.prop("disabled", true).addClass("wait");
+
+    var url = "/SignIn?continue=" + encodeURIComponent(location.pathname) + "&async";
+    var data = form.serialize();
+
+    doLogin(data, url, sign_button);
 }
+
 
 
 //** Register Section **
@@ -359,7 +358,7 @@ function LoginAsChild(username)
 			notify("Some error ocurred! Please try again.");
 		},
 		success: function(data) {
-			data = JSON.parse(data);
+			//data = JSON.parse(data);
 			if(data.success == true){
 				var URL = "/";
 				switch( data.skill ){
@@ -384,36 +383,31 @@ function LoginAsChild(username)
 //** Generic Login Call routine **
 //================================
 function doLogin(data, url, button){
-	//return a promise
 	return $.ajax({
 		url: url,
 		data: data,
-		method:  "POST",
-		cache:false,
+		method: "POST",
+		cache: false,
 		beforeSend: function(){
-			//disable button and add cosmetic markup
+			console.log("Disabling button");
 			button.prop("disabled", true).addClass("wait");
 		},
 		complete: function(){
-			//enable button and remove cosmetic markups
 			button.prop("disabled", false).removeClass("wait");
 		},
-		
-		error: function(){
-			notify("Some error ocurred! Please try again later");
+		error: function(jqXHR){
+			console.log("AJAX error:", jqXHR.responseText);
+			notify("Some error occurred! Please try again later");
 		},
 		success: function(data, status, jqXHR){
-			data = JSON.parse(data);
+			console.log("AJAX success:", data);
 			if(data.success === true){
-				//logged in here
-				//if continue url is provided go there
-				if(data.continue_url != undefined)
+				if(data.continue_url !== undefined)
 					location.href = data.continue_url;
 				else
-					location.reload(true);	//hard reload
+					location.reload(true);
 			} else {
-				//login failed!
-				if(data.error != undefined) login_failed(data.error);
+				if(data.error !== undefined) login_failed(data.error);
 			}
 		}
 	});

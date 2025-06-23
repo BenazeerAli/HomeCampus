@@ -5,10 +5,14 @@ import hashlib
 client = datastore.Client(project='homecampus-flask')
 
 class User(UserMixin):
-    def __init__(self, user_id, username, password_hash):
+    def __init__(self, user_id, username, password_hash, is_parent=False, first_name=''):
         self.id = user_id
         self.username = username
         self.password_hash = password_hash
+        self.is_parent = is_parent
+        self.first_name = first_name
+
+
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -26,7 +30,9 @@ def get_user_by_username(username):
     return User(
         user_id=str(user_entity.key.id),
         username=user_entity['username'],
-        password_hash=user_entity['password_hash']
+        password_hash=user_entity['password_hash'],
+        is_parent =True,
+        first_name = "abc"
     )
 
 def get_user_by_id(user_id):
@@ -37,7 +43,9 @@ def get_user_by_id(user_id):
     return User(
         user_id=str(user_entity.key.id),
         username=user_entity['username'],
-        password_hash=user_entity['password_hash']
+        password_hash=user_entity['password_hash'],
+        is_parent =True,
+        first_name = "abc"
     )
 
 def create_user(username, password):
