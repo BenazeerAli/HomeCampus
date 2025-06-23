@@ -80,13 +80,14 @@
 						<tbody>
 						
 						{% for c in ChildUserData %}
-						<tr>
-						<td><a data-username="{{c[1]}}" href="javascript:void(0);" class="LoginAsChild" title="Login as {{ c[0] }}">{{c[0]}}</a></td>
-						<td>{{c[1]}}</td>
-						<td>{{c[2]}}</td>
-						<td>{{c[3]}}</td>
-						</tr>
-						{% endfor %}
+							<tr>
+								<td><a data-username="{{ c.username }}" href="javascript:void(0);" class="LoginAsChild" title="Login as {{ c.first_name }}">{{ c.first_name }}</a></td>
+								<td>{{ c.username }}</td>
+								<td>{{ c.skill_grade }}</td>  <!-- if your User model has it -->
+								<td>{{ c.other_field }}</td>
+							</tr>
+							{% endfor %}
+
 						
 						</tbody>
 					</table>

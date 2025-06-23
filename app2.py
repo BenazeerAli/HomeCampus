@@ -29,16 +29,20 @@ def index():
     print("User authenticated:", current_user.is_authenticated)
     print("Username:", current_user.username if current_user.is_authenticated else "Anonymous")
     return render_template('HomePage.html')
-@app.route('/logout')
+'''@app.route('/logout')
 @login_required
 def logout():
     logout_user()  # Clears the session and logs out the user
     flash('You have been logged out.')
-    return redirect(url_for('index'))  # Redirect to homepage or login page
+    return redirect(url_for('index')) ''' # Redirect to homepage or login page
 
 @app.context_processor
 def inject_user():
     return dict(current_user=current_user)
+@app.route('/MyProfile')
+#@login_required
+def MyProfile():
+    return render_template('MyProfile.html')
 
 @app.route('/LoginPage', methods=['GET', 'POST'])
 def login():
