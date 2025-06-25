@@ -13,6 +13,9 @@ from routes import auth_bp
 app = Flask(__name__)
 app.secret_key = 'your-secret-key'
 #changes pip 
+#HELLO BENAZEERRRRRRrrrrrr
+#HELLO PT2
+
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'  # redirect to login page if unauthorized
 login_manager.init_app(app)
