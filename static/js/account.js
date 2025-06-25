@@ -32,7 +32,8 @@ $(document).ready(function(){
 	
 	//specific areas that require signin!
 	$("body").on('click', ".sign-in-required", function(evt){
-		if( (!_user.i ) && (viewport.width > 767 && !_fallback) ){
+		if( (!_user.isLoggedIn ) && (viewport.width > 767 && !_fallback) ){
+			console.log("This");
 			evt.preventDefault();
 			signin(modal);
 		}
