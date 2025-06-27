@@ -72,7 +72,7 @@ def signin():
 
     user = get_user_by_username(username)
 
-    if user and check_password_hash(user.entity['password'], password):
+    if user and check_password_hash(user.entity['password_hash'], password):
         login_user(user)
         if is_ajax:
             return jsonify(success=True, continue_url=url_for('index'))
