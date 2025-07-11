@@ -1,9 +1,9 @@
 HomeCampus Legacy Migration Project
 
-Overview
+Overview:
 This project involves the migration of the HomeCampus website from a deprecated Python 2 (Tipfy on Google App Engine) stack to a modern Python 3 environment using Flask. With the official end-of-life of Python 2, it became essential to upgrade the entire backend system to maintain security, performance, and long-term support.
 
-Objectives
+Objectives:
 
 Migrate the existing HomeCampus application from Python 2.7 to Python 3.11+
 
@@ -13,7 +13,7 @@ Ensure feature parity with the legacy system while modernizing the codebase
 
 Improve maintainability, scalability, and developer experience
 
-Technology Stack
+Technology Stack:
 Legacy → Migrated
 
 Language: Python 2.7 → Python 3.11+
@@ -26,7 +26,7 @@ Frontend: HTML, CSS, JavaScript → HTML, CSS, JavaScript
 
 Deployment: Google App Engine → Flask local / GCP-ready
 
-Key Tasks Completed
+Key Tasks Completed:
 
 Codebase translation: Updated all Python 2-specific syntax and libraries (e.g., print, xrange, dict.iteritems) to Python 3 equivalents
 
@@ -40,7 +40,7 @@ Testing & debugging: Ensured functional parity and fixed issues that arose durin
 
 Deployment preparation: Made the app compatible with modern deployment environments
 
-Skills & Concepts Applied
+Skills & Concepts Applied:
 
 Flask application architecture and routing
 
@@ -56,7 +56,7 @@ Legacy code migration and refactoring
 
 Debugging and version control (Git)
 
-Lessons Learned
+Lessons Learned:
 
 Clean and modular architecture significantly simplifies legacy migrations
 
@@ -66,12 +66,12 @@ Understood common challenges in Python 2 to 3 migrations
 
 Reinforced best practices in debugging, testing, and modern web development
 
-Future Improvements
+Future Improvements:
 
 Add automated testing using pytest or unittest
 
 Introduce Docker for local development and containerized deployment
 
-Implement role-based authentication and modern login mechanisms (e.g., OAuth2)
+Implement role-based authentication and modern login mechanisms.
 
-Upgrade the UI using modern frontend libraries like Bootstrap 5 or React
+Upgrade the UI using modern frontend libraries.
